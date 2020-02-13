@@ -31,8 +31,8 @@ namespace Bado
 		sf::Clock _clock;
 		sf::CircleShape _circle[14][10];
 		sf::CircleShape _cursor;
-		int Pitch[14][10];
-		bool isLast[14][10];
+		int Pitch[15][11]={0};
+		bool isLast[15][11]={0};
 		bool turn;
 		int gamestate=0;
 

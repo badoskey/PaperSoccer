@@ -139,38 +139,68 @@ namespace Bado
 
 	void OptionsState::Update( float dt)
 	{
+		this->options[0].setFillColor(sf::Color::White);
+		this->options[1].setFillColor(sf::Color::White);
+		this->options[2].setFillColor(sf::Color::White);
 		if(this->_data->gametype==SINGLEPLAYER){
-			options[0].setFillColor(sf::Color(10,120,0));
-			options[1].setFillColor(sf::Color::White);
+			options[0].setFillColor(sf::Color::Red);
 		}	
 		if(this->_data->gametype==MULTIPLAYER)
 		{
-			options[1].setFillColor(sf::Color(10,120,0));
-			options[0].setFillColor(sf::Color::White);
+			options[1].setFillColor(sf::Color::Red);
 		}
 
-		if(pick>-1){
-		options[3].setFont(this->_data->assets.GetFont( "font"));
-		options[3].setFillColor(sf::Color::White);
-		options[3].setCharacterSize(40);
-		options[3].setString(this->_data->players[0]);
-		options[3].setPosition(SCREEN_WIDTH/2.f-options[3].getGlobalBounds( ).width/2,
-			SCREEN_HEIGHT*2.f/8.f-options[3].getGlobalBounds( ).height/2);
 
-		options[4].setFont(this->_data->assets.GetFont( "font"));
-		options[4].setFillColor(sf::Color::White);
-		options[4].setCharacterSize(40);
-		options[4].setString(this->_data->players[1]);
-		options[4].setPosition(SCREEN_WIDTH/2.f-options[4].getGlobalBounds( ).width/2,
-			SCREEN_HEIGHT*4.f/8.f-options[4].getGlobalBounds( ).height/2);
-	
-	
-		options[5].setFont(this->_data->assets.GetFont( "font"));
-		options[5].setFillColor(sf::Color::White);
-		options[5].setCharacterSize(40);
-		options[5].setString("Back");
-		options[5].setPosition(SCREEN_WIDTH/2.f-options[5].getGlobalBounds( ).width/2,
-			SCREEN_HEIGHT*6.f/8.f-options[5].getGlobalBounds( ).height/2);
+		if(pick>-1){
+			options[3].setFont(this->_data->assets.GetFont( "font"));
+			options[3].setFillColor(sf::Color::White);
+			options[3].setCharacterSize(40);
+			options[3].setString(this->_data->players[0]);
+			options[3].setPosition(SCREEN_WIDTH/2.f-options[3].getGlobalBounds( ).width/2,
+				SCREEN_HEIGHT*2.f/8.f-options[3].getGlobalBounds( ).height/2);
+
+			options[4].setFont(this->_data->assets.GetFont( "font"));
+			options[4].setFillColor(sf::Color::White);
+			options[4].setCharacterSize(40);
+			options[4].setString(this->_data->players[1]);
+			options[4].setPosition(SCREEN_WIDTH/2.f-options[4].getGlobalBounds( ).width/2,
+				SCREEN_HEIGHT*4.f/8.f-options[4].getGlobalBounds( ).height/2);
+
+
+			options[5].setFont(this->_data->assets.GetFont( "font"));
+			options[5].setFillColor(sf::Color::White);
+			options[5].setCharacterSize(40);
+			options[5].setString("Back");
+			options[5].setPosition(SCREEN_WIDTH/2.f-options[5].getGlobalBounds( ).width/2,
+				SCREEN_HEIGHT*6.f/8.f-options[5].getGlobalBounds( ).height/2);
+			
+			if( this->_data->input.IsMouseThere_Text( this->options[3],this->_data->window) )
+			{
+				this->options[3].setFillColor(sf::Color(10,120,0));
+			}
+			if( this->_data->input.IsMouseThere_Text( this->options[4],this->_data->window) )
+			{
+				this->options[4].setFillColor(sf::Color(10,120,0));
+			}
+			if( this->_data->input.IsMouseThere_Text( this->options[5],this->_data->window) )
+			{
+				this->options[5].setFillColor(sf::Color(10,120,0));
+			}
+		}
+		else 
+		{
+			if( this->_data->input.IsMouseThere_Text( this->options[0],this->_data->window) )
+			{
+				this->options[0].setFillColor(sf::Color(10,120,0));
+			}
+			if( this->_data->input.IsMouseThere_Text( this->options[1],this->_data->window) )
+			{
+				this->options[1].setFillColor(sf::Color(10,120,0));
+			}
+			if( this->_data->input.IsMouseThere_Text( this->options[2],this->_data->window) )
+			{
+				this->options[2].setFillColor(sf::Color(10,120,0));
+			}
 		}
 	}
 	void OptionsState::Draw( float dt)

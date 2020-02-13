@@ -16,7 +16,7 @@ namespace Bado
 		this->_data = data;
 	}
 
-	void AI::PlacePoint( int (Pitch)[14][10] ,int i, int j, bool (isLast)[14][10])
+	void AI::PlacePoint( int (Pitch)[15][11] ,int i, int j, bool (isLast)[15][11])
 	{
 		int best_move=-20, best_BIT;
 		for(int y=1;y>-2;y--)
@@ -29,7 +29,7 @@ namespace Bado
 					if((Pitch[i][j])&(1<<actBIT))			continue;
 					
 					int distance, oponent=0;
-					if(Pitch[i+y][j+x]==0){
+					if(Pitch[i+y][j+x]==0 ){
 						oponent=foponent(Pitch,i,j,y,x);
 						distance=y;
 					}
@@ -37,7 +37,7 @@ namespace Bado
 						Pitch[i+y][j+x] = Pitch[i+y][j+x] | (1<<nextBIT); //zapal bity
 						Pitch[i][j] 	= Pitch[i][j] | (1<<(actBIT));	
 
-						distance= Search(Pitch,i+y,j+x,y,0);
+						distance= Search(Pitch,i+y,j+x,y,0,1);
 						
 
 						Pitch[i+y][j+x] = Pitch[i+y][j+x] & ~(1<<nextBIT); //zapal bity
@@ -68,7 +68,7 @@ namespace Bado
 	}
 
 
-	int AI::Search (int Pitch[14][10],int i, int j, int distance,bool isoponent)
+	int AI::Search (int Pitch[15][11],int i, int j, int distance,bool isoponent, int count)
 	{
 		int best_way=distance;
 		bool isloosing=1;
@@ -100,7 +100,7 @@ namespace Bado
 					if((Pitch[i+y][j+x])&(1<<nextBIT)) 		continue;
 					if((Pitch[i][j])&(1<<actBIT))			continue;
 
-					if(Pitch[i+y][j+x]==0){  
+					if(Pitch[i+y][j+x]==0 || count>25){  
 						if(isoponent==0){
 							if(distance>best_way)
 								oponent=foponent(Pitch,i,j,y,x);
@@ -114,7 +114,7 @@ namespace Bado
 						Pitch[i+y][j+x] = Pitch[i+y][j+x] | (1<<nextBIT); //zapal bity
 						Pitch[i][j] 	= Pitch[i][j] | (1<<(actBIT));
 
-						copy_distance=Search(Pitch,i+y,j+x,distance + y,isoponent);
+						copy_distance=Search(Pitch,i+y,j+x,distance + y,isoponent,count+1);
 						
 						Pitch[i+y][j+x] = Pitch[i+y][j+x] & ~(1<<nextBIT); //zapal bity
 						Pitch[i][j] 	= Pitch[i][j] & ~(1<<(actBIT));
@@ -151,7 +151,7 @@ namespace Bado
 
 	}
 
-	int AI::foponent(int Pitch[14][10],int i,int j,int y,int x)
+	int AI::foponent(int Pitch[15][11],int i,int j,int y,int x)
 	{
 		int actBIT=3*(y+1)+(x+1);//bit ktory w masce ma sie zapalic				
 		int nextBIT=3*(-y+1)+(-x+1); //bit z punktu z ktorego przechodzi
@@ -159,7 +159,7 @@ namespace Bado
 		Pitch[i+y][j+x] = Pitch[i+y][j+x] | (1<<nextBIT); //zapal bity
 		Pitch[i][j] 	= Pitch[i][j] | (1<<(actBIT));
 
-		int oponent=Search(Pitch,i+y,j+x,y,1);
+		int oponent=Search(Pitch,i+y,j+x,y,1,1);
 						
 		Pitch[i+y][j+x] = Pitch[i+y][j+x] & ~(1<<nextBIT); //zapal bity
 		Pitch[i][j] 	= Pitch[i][j] & ~(1<<(actBIT));

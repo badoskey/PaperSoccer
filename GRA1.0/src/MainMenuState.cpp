@@ -58,6 +58,12 @@ namespace Bado
 
 		while( this->_data->window.pollEvent( event ))
 		{	
+
+			if(event.type ==sf::Event::Closed)
+			{
+				this->_data->window.close( );
+				break;
+			}
 			if( event.type==sf::Event::Resized)
 			{
 				sf::FloatRect visibleArea(0,0,event.size.width, event.size.height);

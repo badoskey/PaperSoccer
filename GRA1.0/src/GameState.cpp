@@ -29,6 +29,7 @@ namespace Bado
 			for(int j=1;j<=9;j++){
 				if((i!=1&&i!=13)||(j>3&&j<7)){
 					Pitch[i][j]=0;
+					isLast[i][j]=0;
 					if( (i==2 || i==12) && j!=4  && j!=5 && j!=9 )
 						 Pitch[i][j] = Pitch[i][j] | (1<<5); 
 					if( (j==1 || j==9) && i!=12 )
@@ -58,19 +59,19 @@ namespace Bado
 		
 		text[0].setFont(this->_data->assets.GetFont( "font"));
 		text[0].setFillColor(sf::Color::White);
-		text[0].setCharacterSize(24);
+		text[0].setCharacterSize(30);
 		text[0].setString(this->_data->players[turn]+"Has a ball");
 		text[0].setPosition(550,100);
 
 		text[1].setFont(this->_data->assets.GetFont( "font"));
 		text[1].setFillColor(sf::Color::White);
-		text[1].setCharacterSize(24);
+		text[1].setCharacterSize(30);
 		text[1].setString("RETRY");
 		text[1].setPosition(550,550);
 	
 		text[2].setFont(this->_data->assets.GetFont( "font"));
 		text[2].setFillColor(sf::Color::White);
-		text[2].setCharacterSize(24);
+		text[2].setCharacterSize(30);
 		text[2].setString("EXIT");
 		text[2].setPosition(550,600);
 
@@ -166,14 +167,33 @@ namespace Bado
 			_circle[13][5].getPosition( ).y + text[4].getGlobalBounds().height);
 
 		text[0].setString(this->_data->players[this->_data->turn]+" has a ball");
+		text[4-this->_data->turn].setFillColor(sf::Color(10,120,0));
+
+			this->text[1].setFillColor(sf::Color::White);
+			this->text[2].setFillColor(sf::Color::White);
+		if( this->_data->input.IsMouseThere_Text( this->text[1],this->_data->window) )
+			{
+				this->text[1].setFillColor(sf::Color(10,120,0));
+			}
+		if( this->_data->input.IsMouseThere_Text( this->text[2],this->_data->window) )
+			{
+				this->text[2].setFillColor(sf::Color(10,120,0));
+			}
+
+
 
 		if(gamestate>=PLAYER1WON){
+			text[1].setFillColor(sf::Color::Red);	
+
 			text[5].setFont(this->_data->assets.GetFont( "font"));
 			text[5].setFillColor(sf::Color::White);
 			text[5].setCharacterSize(40);
 			text[5].setString(this->_data->players[gamestate-91]+" has Won!");
 			text[5].setPosition(550,SCREEN_HEIGHT/2.f-text[5].getGlobalBounds( ).height/2);
 		}
+
+
+
 	}
 	void GameState::Draw( float dt)
 	{

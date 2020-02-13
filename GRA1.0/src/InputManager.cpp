@@ -25,7 +25,7 @@ namespace Bado
 		if( sf::Mouse::isButtonPressed (button))
 		{
 			sf::IntRect ButtonRect( point.getPosition( ).x, point.getPosition( ).y,
-				point.getGlobalBounds( ).width*3, point.getGlobalBounds( ).height*3);
+				point.getGlobalBounds( ).width*5, point.getGlobalBounds( ).height*5);
 			if(ButtonRect.contains( sf::Mouse::getPosition(window)))
 			{
 				return true;
@@ -53,7 +53,7 @@ namespace Bado
 		 sf::RenderWindow &window)
 	{
 			sf::IntRect ButtonRect( point.getPosition( ).x, point.getPosition( ).y,
-				point.getGlobalBounds( ).width*3, point.getGlobalBounds( ).height*3);
+				point.getGlobalBounds( ).width*5, point.getGlobalBounds( ).height*5);
 			if(ButtonRect.contains( sf::Mouse::getPosition(window)))
 			{
 				return true;
