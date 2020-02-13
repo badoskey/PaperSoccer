@@ -25,8 +25,8 @@ namespace Bado
 			this->_data->players[1]="Player 2";
 		this->_data->window.setSize(sf::Vector2u(SCREEN_WIDTH*1.75f,SCREEN_HEIGHT*1.1f));
 	
-		for(int i=1;i<=13;i++){
-			for(int j=1;j<=9;j++){
+		for(int i=0;i<=14;i++){
+			for(int j=0;j<=10;j++){
 				if((i!=1&&i!=13)||(j>3&&j<7)){
 					Pitch[i][j]=0;
 					isLast[i][j]=0;
