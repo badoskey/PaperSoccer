@@ -22,8 +22,7 @@ namespace Bado
 		this->_data->assets.LoadTexture( "Background",
 			MAIN_MENU_BACKGROUND_FILEPATH);
 		this->_background.setTexture( this->_data->assets.GetTexture( "Background"));
-
-		this->_background.setScale(0.75f,0.75f);
+		this->_background.setScale(0.75f*this->_data->scale_width,0.75f*this->_data->scale_height);
 
 		this->_data->assets.LoadTexture( "Buttons", MAIN_MENU_BUTTONS_FILEPATH);
 
@@ -33,21 +32,21 @@ namespace Bado
 		float width=this->_playButton.getGlobalBounds( ).width; 
 		float height=this->_playButton.getGlobalBounds( ).height; //26
 		this->_playButton.setTextureRect(sf::IntRect(0,0,width,height*4 /26));
-		this->_playButton.setScale(0.5f,0.5f);
-		this->_playButton.setPosition( ( SCREEN_WIDTH / 2 ) - ( this->_playButton.getGlobalBounds( ).width /2 ), 
-			( SCREEN_HEIGHT * 2 / 7 ) - ( this->_playButton.getGlobalBounds( ).height /2 ));
+		this->_playButton.setScale(0.5f*this->_data->scale_width,0.5f*this->_data->scale_height);
+		this->_playButton.setPosition( ( this->_data->scale_width*SCREEN_WIDTH / 2 ) - ( this->_playButton.getGlobalBounds( ).width /2 ), 
+			( this->_data->scale_height*SCREEN_HEIGHT * 2 / 7 ) - ( this->_playButton.getGlobalBounds( ).height /2 ));
 
 		this->_optionsButton.setTexture( this->_data->assets.GetTexture("Buttons") );
 		this->_optionsButton.setTextureRect(sf::IntRect(0, height*4 /26, width, height*4 /26));
-		this->_optionsButton.setScale(0.5f,0.5f);
-		this->_optionsButton.setPosition( ( SCREEN_WIDTH / 2 ) - (this->_optionsButton.getGlobalBounds( ).width / 2 ), 
-			( SCREEN_HEIGHT / 2  ) - ( this->_optionsButton.getGlobalBounds( ).height ) /2 );
+		this->_optionsButton.setScale(0.5f*this->_data->scale_width,0.5f*this->_data->scale_height);
+		this->_optionsButton.setPosition( ( this->_data->scale_width*SCREEN_WIDTH / 2 ) - (this->_optionsButton.getGlobalBounds( ).width / 2 ), 
+			( this->_data->scale_height*SCREEN_HEIGHT / 2  ) - ( this->_optionsButton.getGlobalBounds( ).height ) /2 );
 		
 		this->_exitButton.setTexture( this->_data->assets.GetTexture("Buttons") );
 		this->_exitButton.setTextureRect(sf::IntRect(0, height*8 /26, width, height*4 /26));
-		this->_exitButton.setScale(0.5f,0.5f);
-		this->_exitButton.setPosition( ( SCREEN_WIDTH / 2 ) - ( this->_exitButton.getGlobalBounds( ).width / 2 ), 
-			( SCREEN_HEIGHT *5 /7 ) - ( this->_exitButton.getGlobalBounds( ).height / 2 ));
+		this->_exitButton.setScale(0.5f*this->_data->scale_width,0.5f*this->_data->scale_height);
+		this->_exitButton.setPosition( ( this->_data->scale_width*SCREEN_WIDTH / 2 ) - ( this->_exitButton.getGlobalBounds( ).width / 2 ), 
+			( this->_data->scale_height*SCREEN_HEIGHT *5 /7 ) - ( this->_exitButton.getGlobalBounds( ).height / 2 ));
 	
 	}
 
@@ -66,6 +65,7 @@ namespace Bado
 			}
 			if( event.type==sf::Event::Resized)
 			{
+				//this->_data->_background.setTextureRect(0)
 				sf::FloatRect visibleArea(0,0,event.size.width, event.size.height);
 				this->_data->window.setView(sf:: View(visibleArea));
 			;
@@ -127,7 +127,7 @@ namespace Bado
 
 	void MainMenuState::Draw( float dt)
 	{
-		this->_data->window.clear( );
+		this->_data->window.clear(sf::Color(75,162,47,1));
 
 		this->_data->window.draw(this->_background);
 		this->_data->window.draw(this->_playButton);

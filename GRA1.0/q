@@ -1,0 +1,48 @@
+[33mcommit 96415f9de4771fb6ff7fc1919e3beac282b270da[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 23:12:26 2020 +0100
+
+    Splash and Menu Backgroduns
+
+[33mcommit 1f405a3a1007b095dc5f3449b3efd870cdcd7367[m
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 20:53:17 2020 +0100
+
+    Remove necessary DIR
+
+[33mcommit 0e765dcb4ab6c8af0426c468bb742f7650ec57d0[m
+Merge: dfe4f8a 22c63ae
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 20:30:37 2020 +0100
+
+    Merge branch 'master' of github.com:badoskey/PaperSoccer
+
+[33mcommit 22c63ae11feff6130b82ae8bf952b34f1feb4775[m
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 20:25:41 2020 +0100
+
+    first commit
+
+[33mcommit 5889dfe7fdc94c2b428673e2e301094257e86679[m
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 20:16:30 2020 +0100
+
+    Added a GRA2.0
+
+[33mcommit c8fe25cf164953007fc3e26e3455aa9e813ba987[m
+Author: badoskey <58231245+badoskey@users.noreply.github.com>
+Date:   Wed Jan 29 20:07:41 2020 +0100
+
+    Delete README.md
+
+[33mcommit dfe4f8a116f6b80f6cfa6109c52427d6942fc035[m
+Author: badoskey <marcinbadosky@gmail.com>
+Date:   Wed Jan 29 19:58:35 2020 +0100
+
+    First commit
+
+[33mcommit 569997f0093dfebb92543de3f33f3025759961d8[m
+Author: badoskey <58231245+badoskey@users.noreply.github.com>
+Date:   Wed Jan 29 19:57:19 2020 +0100
+
+    Initial commit

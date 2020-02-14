@@ -1,15 +1,18 @@
 #include "Gameloop.hpp"
 #include "SplashState.hpp"
+#include "definitions.hpp"
+#include <iostream>
 
 namespace Bado
 {
 	Gameloop::Gameloop( int width, int height, std:: string title)
 	{
-		
-		_data->window.create( sf::VideoMode( width, height),
+		this->_data->scale_width=sf::VideoMode::getDesktopMode().width/BADO_WIDTH;
+		this->_data->scale_height=sf::VideoMode::getDesktopMode().height/BADO_HEIGHT;
+
+		_data->window.create( sf::VideoMode( width*this->_data->scale_width, height * this->_data->scale_height),
 			title, sf::Style::Default);
 		_data->machine.AddState( StateRef( new SplashState( this->_data ) ) ) ;  
-
 
 		this->Run( );
 	}

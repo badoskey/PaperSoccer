@@ -20,7 +20,7 @@ namespace Bado
 	
 		_background.setTexture( this->_data->assets.GetTexture("Splash State Background"));
 		
-		_background.setScale(0.75f,0.75f);
+		_background.setScale(this->_data->scale_width*0.75f,this->_data->scale_height*0.75f);
 	}
 
 	void SplashState::HandleInput()

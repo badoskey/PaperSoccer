@@ -17,6 +17,8 @@ namespace Bado
 		sf::String players[2];
 		int gametype;
 		bool turn;
+		float scale_width;
+		float scale_height;
 	};
 
 	typedef std::shared_ptr<GameData> GameDataRef;

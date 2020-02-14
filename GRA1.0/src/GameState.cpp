@@ -23,7 +23,8 @@ namespace Bado
 			this->_data->players[0]="Player 1";
 		if(this->_data->players[1].getSize()==0)
 			this->_data->players[1]="Player 2";
-		this->_data->window.setSize(sf::Vector2u(SCREEN_WIDTH*1.75f,SCREEN_HEIGHT*1.1f));
+		this->_data->window.setSize(sf::Vector2u(this->_data->scale_width*SCREEN_WIDTH*1.75f,
+			this->_data->scale_height*SCREEN_HEIGHT*1.1f));
 	
 		for(int i=0;i<=14;i++){
 			for(int j=0;j<=10;j++){
@@ -59,23 +60,24 @@ namespace Bado
 		
 		text[0].setFont(this->_data->assets.GetFont( "font"));
 		text[0].setFillColor(sf::Color::White);
-		text[0].setCharacterSize(30);
+		text[0].setCharacterSize(this->_data->scale_height*30);
 		text[0].setString(this->_data->players[turn]+"Has a ball");
-		text[0].setPosition(550,100);
+		text[0].setPosition(this->_data->scale_width*550,this->_data->scale_height*100);
 
 		text[1].setFont(this->_data->assets.GetFont( "font"));
 		text[1].setFillColor(sf::Color::White);
-		text[1].setCharacterSize(30);
+		text[1].setCharacterSize(this->_data->scale_height*30);
 		text[1].setString("RETRY");
-		text[1].setPosition(550,550);
+		text[1].setPosition(this->_data->scale_width*550,this->_data->scale_height*550);
 	
 		text[2].setFont(this->_data->assets.GetFont( "font"));
 		text[2].setFillColor(sf::Color::White);
-		text[2].setCharacterSize(30);
+		text[2].setCharacterSize(this->_data->scale_height*30);
 		text[2].setString("EXIT");
-		text[2].setPosition(550,600);
+		text[2].setPosition(this->_data->scale_width*550,this->_data->scale_height*600);
 
-		_cursor.setPosition(sf::Vector2f(40+50*5-5.0f,70+50*7-5.0f));
+		_cursor.setPosition(sf::Vector2f(this->_data->scale_width*(40+50*5-5.0f),
+			this->_data->scale_height*(70+50*7-5.0f)));
 		this->_data->assets.LoadTexture( "Ball",BALL);
 
 	}
@@ -103,7 +105,6 @@ namespace Bado
 
 				break;
 			}
-			
 			for(int i=0; i<3;i++)
 				if(this->_data->input.IsTextClicked(text[i], sf::Mouse::Left,  this->_data->window))
 				{
@@ -117,7 +118,8 @@ namespace Bado
 						case 2:
 						{
 						this->_data->machine.AddState( StateRef( new MainMenuState( _data )), true);
-						this->_data->window.setSize(sf::Vector2u(SCREEN_WIDTH,SCREEN_HEIGHT));
+						this->_data->window.setSize(sf::Vector2u(this->_data->scale_width*SCREEN_WIDTH,
+							this->_data->scale_height*SCREEN_HEIGHT));
 						break;
 						}
 						default:
@@ -136,7 +138,8 @@ namespace Bado
 								ai->PlacePoint(Pitch, i, j, isLast);
 								float posy =70+50*i, posx=40+50*j ;
 								_cursor.setRadius(5.0f);
-								_cursor.setPosition(sf::Vector2f(posx-5.0f,posy-5.0f));
+								_cursor.setPosition(sf::Vector2f(this->_data->scale_width*(posx-5.0f)
+									,this->_data->scale_height*posy-5.0f));
 								return;
 							}
 						}
@@ -154,14 +157,14 @@ namespace Bado
 
 		text[3].setFont(this->_data->assets.GetFont( "font"));
 		text[3].setFillColor(sf::Color::White);
-		text[3].setCharacterSize(24);
+		text[3].setCharacterSize(this->_data->scale_width*24);
 		text[3].setString(this->_data->players[1]);
 		text[3].setPosition(_circle[1][5].getPosition( ).x - text[3].getGlobalBounds().width/2,
 			_circle[1][5].getPosition( ).y-text[3].getGlobalBounds( ).height*2);
 	
 		text[4].setFont(this->_data->assets.GetFont( "font"));
 		text[4].setFillColor(sf::Color::White);
-		text[4].setCharacterSize(24);
+		text[4].setCharacterSize(this->_data->scale_width*24);
 		text[4].setString(this->_data->players[0]);
 		text[4].setPosition(_circle[13][5].getPosition( ).x - text[4].getGlobalBounds( ).width/2,
 			_circle[13][5].getPosition( ).y + text[4].getGlobalBounds().height);
@@ -189,7 +192,8 @@ namespace Bado
 			text[5].setFillColor(sf::Color::White);
 			text[5].setCharacterSize(40);
 			text[5].setString(this->_data->players[gamestate-91]+" has Won!");
-			text[5].setPosition(550,SCREEN_HEIGHT/2.f-text[5].getGlobalBounds( ).height/2);
+			text[5].setPosition(this->_data->scale_width*550,
+				this->_data->scale_height*SCREEN_HEIGHT/2.f-text[5].getGlobalBounds( ).height/2);
 		}
 
 
@@ -206,22 +210,25 @@ namespace Bado
 					if(Pitch[i][j]>0 || (i==7 && j==5)) {
 						_circle[i][j].setFillColor(sf::Color::White);
 						if(isLast[i][j]){
-						  	_circle[i][j].setRadius(10.0f);
+						  	_circle[i][j].setRadius(this->_data->scale_width*10.0f);
 						  	_circle[i][j].setTexture(&this->_data->assets.GetTexture( "Ball"));
-							_circle[i][j].setPosition(sf::Vector2f(x-10.0f,y-10.0f));
+							_circle[i][j].setPosition(sf::Vector2f(this->_data->scale_width*(x-10.0f)
+								,this->_data->scale_height*(y-10.0f) ) );
 						}
 						else
 						{
 							_circle[i][j].setTexture(NULL);
-							_circle[i][j].setRadius(5.0f);
-							_circle[i][j].setPosition(sf::Vector2f(x-5.0f,y-5.0f));
+							_circle[i][j].setRadius(this->_data->scale_width*5.0f);
+							_circle[i][j].setPosition(sf::Vector2f(this->_data->scale_width*(x-5.0f),
+								this->_data->scale_height*(y-5.0f) ) );
 						}
 					}
 					else{
 							_circle[i][j].setTexture(NULL);
-							_circle[i][j].setRadius(3.0f);
+							_circle[i][j].setRadius(this->_data->scale_width*3.0f);
 							_circle[i][j].setFillColor(sf::Color::White);
-							_circle[i][j].setPosition(sf::Vector2f(x-3.0f,y-3.0f));
+							_circle[i][j].setPosition(sf::Vector2f(this->_data->scale_width*(x-3.0f)
+								,this->_data->scale_height*(y-3.0f) ) );
 					}			
 
 					//sprawdz ktore kreski mozesz narysować
@@ -229,8 +236,10 @@ namespace Bado
 						for(int lx=-1;lx<2;lx++){
 							int actBIT=(lx+1)+3*(ly+1);//bit ktory w masce ma sie zapalic
 							if(Pitch[i][j]&(1<<actBIT)){
-								sf::Vertex line[] =	{sf::Vertex(sf::Vector2f(x, y)),
-	    						sf::Vertex(sf::Vector2f(x + 50*lx, y + 50*ly))} ;
+								sf::Vertex line[] =	{sf::Vertex(sf::Vector2f(this->_data->scale_width*x,
+								 this->_data->scale_height*y)),
+	    						sf::Vertex(sf::Vector2f(this->_data->scale_width*(x + 50*lx)
+	    							, this->_data->scale_height*(y + 50*ly) ) )} ;
 								_data->window.draw(line, 2, sf::Lines);
 						}
 					}
@@ -239,9 +248,10 @@ namespace Bado
 					
 					//kreski kursora
 					if(isLast[i][j]){
-						sf::Vertex line[] =	{sf::Vertex(sf::Vector2f(x, y),sf::Color::Black),
-	    					sf::Vertex(sf::Vector2f(_cursor.getPosition().x +5.0f,
-	    					_cursor.getPosition().y +5.0f),sf::Color::White)} ;
+						sf::Vertex line[] =	{sf::Vertex(sf::Vector2f(this->_data->scale_width*x,
+						 this->_data->scale_height*y),sf::Color::Black),
+	    					sf::Vertex(sf::Vector2f(_cursor.getPosition().x +this->_data->scale_width*5.0f,
+	    					_cursor.getPosition().y +this->_data->scale_height*5.0f),sf::Color::White)} ;
 							_data->window.draw(line, 2, sf::Lines);
 					}
 				}
@@ -282,8 +292,9 @@ namespace Bado
 
 
 					float posy =70+50*i, posx=40+50*j ;
-					_cursor.setRadius(5.0f);
-					_cursor.setPosition(sf::Vector2f(posx-5.0f,posy-5.0f));
+					_cursor.setRadius(this->_data->scale_width*5.0f);
+					_cursor.setPosition(sf::Vector2f(this->_data->scale_width*(posx-5.0f),
+						this->_data->scale_height*(posy-5.0f) ) );
 
 					//jesli prawidlowy punkt to sprawdz czy zostal klikniety
 					if(this->_data->input.IsPointClicked(_circle[i][j], sf::Mouse::Left,  this->_data->window))

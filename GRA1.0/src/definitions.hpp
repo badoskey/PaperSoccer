@@ -3,6 +3,9 @@
 #define SCREEN_WIDTH 612
 #define SCREEN_HEIGHT 792
 
+#define BADO_WIDTH 1920
+#define BADO_HEIGHT 1080
+
 #define SPLASH_STATE_SHOW_TIME 1
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "assets/splash.background.png"
